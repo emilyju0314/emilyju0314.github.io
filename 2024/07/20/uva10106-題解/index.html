@@ -11,8 +11,8 @@
 
     <meta name="description" content="題目輸入兩個數字X、Y，輸出X＊Y。
 題解使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。用product裝答案，進位並且將多餘的0刪除，最後輸出。
-沒有事先判斷x或y是否為零會WA
 
+沒有事先判斷x或y是否為零會WA
 
 12345678910111213141516171819202"/>
 
@@ -29,8 +29,8 @@
 
     <meta property="og:description" content="題目輸入兩個數字X、Y，輸出X＊Y。
 題解使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。用product裝答案，進位並且將多餘的0刪除，最後輸出。
-沒有事先判斷x或y是否為零會WA
 
+沒有事先判斷x或y是否為零會WA
 
 12345678910111213141516171819202"/>
 
@@ -162,9 +162,9 @@
                 
                 <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入兩個數字X、Y，輸出X＊Y。</p>
 <h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。<br>用product裝答案，進位並且將多餘的0刪除，最後輸出。</p>
-<blockquote><p>沒有事先判斷x或y是否為零會WA</p>
+<blockquote>
+<p>沒有事先判斷x或y是否為零會WA</p>
 </blockquote>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string x, y;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; x &gt;&gt; y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (x == <span class="string">&quot;0&quot;</span> || y == <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">			cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		vector&lt;<span class="type">int</span>&gt; vx, vy;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = x.<span class="built_in">length</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			vx.<span class="built_in">push_back</span>(x[i] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = y.<span class="built_in">length</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			vy.<span class="built_in">push_back</span>(y[i] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">product</span><span class="params">(vx.size() + vy.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; vx.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; vy.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">				product[i + j] += vx[i] * vy[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; product.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (product[i] &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">				product[i + <span class="number">1</span>] += product[i] / <span class="number">10</span>;</span><br><span class="line">				product[i] %= <span class="number">10</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (product.<span class="built_in">back</span>() == <span class="number">0</span>) product.<span class="built_in">pop_back</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = product.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			cout &lt;&lt; product[i];</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
             </div>
 
