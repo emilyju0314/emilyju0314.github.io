@@ -12,9 +12,12 @@
     <meta name="description" content="題目輸入兩個vector，名字與身高，依照身高排序後輸出。
 題解用pair存放名字與身高，sort(begin,end)排序，之後按照大到小輸出。
 
-身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。sort在#include內
+身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。
 
-12345678910111213class S"/>
+sort在#include&amp;lt;algorithm&amp;gt;內
+
+
+1234"/>
 
 
 <!--Author-->
@@ -30,9 +33,12 @@
     <meta property="og:description" content="題目輸入兩個vector，名字與身高，依照身高排序後輸出。
 題解用pair存放名字與身高，sort(begin,end)排序，之後按照大到小輸出。
 
-身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。sort在#include內
+身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。
 
-12345678910111213class S"/>
+sort在#include&amp;lt;algorithm&amp;gt;內
+
+
+1234"/>
 
 
 <!--Open Graph Site Name-->
@@ -163,7 +169,10 @@
                 <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入兩個vector，名字與身高，依照身高排序後輸出。</p>
 <h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>用pair存放名字與身高，sort(begin,end)排序，之後按照大到小輸出。</p>
 <blockquote>
-<p>身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。<br>sort在#include<algorithm>內</p>
+<p>身高要放在名字之前，因為sort預設先用前面的排序。預設是小到大排序。</p>
+<blockquote>
+<p>sort在#include&lt;algorithm&gt;內</p>
+</blockquote>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">sortPeople</span><span class="params">(vector&lt;string&gt;&amp; names, vector&lt;<span class="type">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,string&gt;&gt; tmp;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;names.<span class="built_in">size</span>();i++)</span><br><span class="line">            tmp.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(heights[i],names[i]));</span><br><span class="line">        <span class="built_in">sort</span>(tmp.<span class="built_in">begin</span>(),tmp.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=tmp.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">            ans.<span class="built_in">push_back</span>(tmp[i].second);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
             </div>
