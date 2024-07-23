@@ -9,12 +9,8 @@
 
 
 
-    <meta name="description" content="題目輸入兩個數字X、Y，輸出X*Y。
-題解使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。用product裝答案，進位並且將多餘的0刪除，最後輸出。
-
-沒有事先判斷x或y是否為零會WA
-
-12345678910111213141516171819202"/>
+    <meta name="description" content="題目輸入n&amp;#x3D;2、4、6、8其中一個數字，輸出n位數內的數字x滿足: $(x的前n&amp;#x2F;2位數+x的後n&amp;#x2F;2位數)^2&amp;#x3D;x$
+題解對每一個數字計算用2、4、6、8位數切分會不會滿足條件，直接計算注意的點:直接跑到$10^9$大會超時，只跑$10^5$取平方。因為開根"/>
 
 
 <!--Author-->
@@ -22,17 +18,13 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="uva10106 Product 題解"/>
+    <meta property="og:title" content="uva256 Quirksome Squares 題解"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="題目輸入兩個數字X、Y，輸出X*Y。
-題解使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。用product裝答案，進位並且將多餘的0刪除，最後輸出。
-
-沒有事先判斷x或y是否為零會WA
-
-12345678910111213141516171819202"/>
+    <meta property="og:description" content="題目輸入n&amp;#x3D;2、4、6、8其中一個數字，輸出n位數內的數字x滿足: $(x的前n&amp;#x2F;2位數+x的後n&amp;#x2F;2位數)^2&amp;#x3D;x$
+題解對每一個數字計算用2、4、6、8位數切分會不會滿足條件，直接計算注意的點:直接跑到$10^9$大會超時，只跑$10^5$取平方。因為開根"/>
 
 
 <!--Open Graph Site Name-->
@@ -59,7 +51,7 @@
 
 <!-- Title -->
 
-<title>uva10106 Product 題解 | 刷題blog</title>
+<title>uva256 Quirksome Squares 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -128,7 +120,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>uva10106 Product 題解</h1>
+                    <h1>uva256 Quirksome Squares 題解</h1>
                     
                 </div>
             </div>
@@ -160,12 +152,9 @@
     
 </span>  
                 
-                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入兩個數字X、Y，輸出X*Y。</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>使用大數乘法。因為數字會大到10的250次方，先用string讀入並切分每位數到vector內。<br>用product裝答案，進位並且將多餘的0刪除，最後輸出。</p>
-<blockquote>
-<p>沒有事先判斷x或y是否為零會WA</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string x, y;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; x &gt;&gt; y) &#123;</span><br><span class="line">		<span class="keyword">if</span> (x == <span class="string">&quot;0&quot;</span> || y == <span class="string">&quot;0&quot;</span>) &#123;</span><br><span class="line">			cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		vector&lt;<span class="type">int</span>&gt; vx, vy;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = x.<span class="built_in">length</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			vx.<span class="built_in">push_back</span>(x[i] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = y.<span class="built_in">length</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			vy.<span class="built_in">push_back</span>(y[i] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">product</span><span class="params">(vx.size() + vy.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; vx.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; vy.<span class="built_in">size</span>(); j++) &#123;</span><br><span class="line">				product[i + j] += vx[i] * vy[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; product.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (product[i] &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">				product[i + <span class="number">1</span>] += product[i] / <span class="number">10</span>;</span><br><span class="line">				product[i] %= <span class="number">10</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (product.<span class="built_in">back</span>() == <span class="number">0</span>) product.<span class="built_in">pop_back</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = product.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">			cout &lt;&lt; product[i];</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入n&#x3D;2、4、6、8其中一個數字，輸出n位數內的數字x滿足: $(x的前n&#x2F;2位數+x的後n&#x2F;2位數)^2&#x3D;x$</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>對每一個數字計算用2、4、6、8位數切分會不會滿足條件，直接計算<br>注意的點:直接跑到$10^9$大會超時，只跑$10^5$取平方。因為開根號不是整數的x必不滿足條件。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> digit[<span class="number">4</span>] = &#123; <span class="number">10</span>,<span class="number">100</span>,<span class="number">1000</span>,<span class="number">10000</span> &#125;;</span><br><span class="line"><span class="type">int</span> len[<span class="number">4</span>] = &#123; <span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span> &#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;vector&lt;string&gt;&gt; <span class="built_in">v</span>(<span class="number">4</span>, <span class="built_in">vector</span>&lt;string&gt;());</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span>  i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">		<span class="type">int</span> square = i * i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">			string s = <span class="built_in">to_string</span>(square);</span><br><span class="line">			<span class="keyword">if</span> (s.<span class="built_in">length</span>() &gt; len[j]) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">pow</span>(square / digit[j] + square % digit[j], <span class="number">2</span>) == square) &#123;</span><br><span class="line">				<span class="keyword">while</span> (s.<span class="built_in">length</span>() &lt; len[j]) s = <span class="string">&quot;0&quot;</span> + s;</span><br><span class="line">				v[j].<span class="built_in">push_back</span>(s);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; n) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; v[(n - <span class="number">1</span>) / <span class="number">2</span>].<span class="built_in">size</span>(); i++)</span><br><span class="line">			cout &lt;&lt; v[(n - <span class="number">1</span>) / <span class="number">2</span>][i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
             </div>
 
             <!-- Post information -->
@@ -185,10 +174,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/uva10220/" class="page-link float-left">&larr;  Newer Posts</a></li>
+                <li class="previous page-item d-inline"><a href="/uva10106/" class="page-link float-left">&larr;  Newer Posts</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/uva256/" class="page-link float-right">Older Posts  &rarr;</a></li>
             
         </ul>
     </div>
@@ -248,6 +235,13 @@
         });
     </script>
 
+
+    <script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script>
+        MathJax.Hub.Config({
+            tex2jax:{inlineMath:[['$', '$']]}
+        })
+    </script>
 
     
 
