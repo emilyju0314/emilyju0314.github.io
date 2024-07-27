@@ -9,10 +9,8 @@
 
 
 
-    <meta name="description" content="題目輸入數字n，輸出使所有位數相乘等於n的最小數。
-題解由9開始做因式分解，做到2。最小數為分解完後由小排列到大的數字。如果分解完的數字還大於2，代表無法分解成所有位數乘積，輸出-1。
-
-由9開始:如果從小的開始，可能9會分解成33、8分解為222…較大。超過9不考慮:因為是每位數合。最小到2:0跟"/>
+    <meta name="description" content="題目輸入$V_total$與$V_0$，求使得$0.3*\sqrt{\frac{V_total}{i} - V_0}*i$的最大值i。如果沒有i或i超過一個，輸出0。
+題解i從1到total，看能不能求出最大值，直接照公式計算即可。注意的點:求出來的v可以不是整數，以及要計算誤差，小於$10^-12"/>
 
 
 <!--Author-->
@@ -20,15 +18,13 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="uva993 Product of digits 題解"/>
+    <meta property="og:title" content="uva11001 Necklace 題解"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="題目輸入數字n，輸出使所有位數相乘等於n的最小數。
-題解由9開始做因式分解，做到2。最小數為分解完後由小排列到大的數字。如果分解完的數字還大於2，代表無法分解成所有位數乘積，輸出-1。
-
-由9開始:如果從小的開始，可能9會分解成33、8分解為222…較大。超過9不考慮:因為是每位數合。最小到2:0跟"/>
+    <meta property="og:description" content="題目輸入$V_total$與$V_0$，求使得$0.3*\sqrt{\frac{V_total}{i} - V_0}*i$的最大值i。如果沒有i或i超過一個，輸出0。
+題解i從1到total，看能不能求出最大值，直接照公式計算即可。注意的點:求出來的v可以不是整數，以及要計算誤差，小於$10^-12"/>
 
 
 <!--Open Graph Site Name-->
@@ -55,7 +51,7 @@
 
 <!-- Title -->
 
-<title>uva993 Product of digits 題解 | 刷題blog</title>
+<title>uva11001 Necklace 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -124,7 +120,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>uva993 Product of digits 題解</h1>
+                    <h1>uva11001 Necklace 題解</h1>
                     
                 </div>
             </div>
@@ -146,7 +142,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-07-25
+        2024-07-27
     
     <!-- word count and read count -->
     
@@ -160,12 +156,12 @@
     
 </span>  
                 
-                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入數字n，輸出使所有位數相乘等於n的最小數。</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>由9開始做因式分解，做到2。最小數為分解完後由小排列到大的數字。<br>如果分解完的數字還大於2，代表無法分解成所有位數乘積，輸出-1。</p>
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入$V_total$與$V_0$，求使得$0.3*\sqrt{\frac{V_total}{i} - V_0}*i$的最大值i。<br>如果沒有i或i超過一個，輸出0。</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>i從1到total，看能不能求出最大值，直接照公式計算即可。<br>注意的點:求出來的v可以不是整數，以及要計算誤差，小於$10^-12$就視為同個數字。</p>
 <blockquote>
-<p>由9開始:如果從小的開始，可能9會分解成33、8分解為222…較大。超過9不考慮:因為是每位數合。<br>最小到2:0跟1分解了只會增加位數。如果遇到0跟1，直接輸出。</p>
+<p>sqrt及fabs都在#include&lt;math.h&gt;裡，fabs計算小數的絕對值，</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n, num;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n--) &#123;</span><br><span class="line">		cin &gt;&gt; num;</span><br><span class="line">		<span class="keyword">if</span> (num == <span class="number">0</span> || num == <span class="number">1</span>) &#123;</span><br><span class="line">			cout &lt;&lt; num &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">9</span>; i &gt;= <span class="number">2</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">while</span> (num % i == <span class="number">0</span>) &#123;</span><br><span class="line">				v.<span class="built_in">push_back</span>(i);</span><br><span class="line">				num /= i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (num &gt;= <span class="number">2</span>) cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> i = v.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">				cout &lt;&lt; v[i];</span><br><span class="line">			cout &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> total, v0;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (cin &gt;&gt; total &gt;&gt; v0) &#123;</span><br><span class="line">		<span class="keyword">if</span> (total == <span class="number">0</span> &amp;&amp; v0 == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="type">double</span> Max = <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> ans = <span class="number">0</span>, num = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= total; i++) &#123;</span><br><span class="line">			<span class="type">double</span> v = (<span class="type">double</span>)total / i;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (v - v0 &lt;= <span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">			<span class="type">double</span> tmp = <span class="number">0.3</span> * <span class="built_in">sqrt</span>(v - v0) * i;</span><br><span class="line">			<span class="keyword">if</span> (Max &lt;= tmp) &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="built_in">fabs</span>(Max - tmp) &lt; <span class="number">1e-12</span>) </span><br><span class="line">					num++;</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					Max = tmp;</span><br><span class="line">					num = <span class="number">0</span>;</span><br><span class="line">					ans = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (ans == <span class="number">0</span> || num &gt; <span class="number">0</span>) cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span> cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
             </div>
@@ -187,10 +183,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/uva11001/" class="page-link float-left">&larr;  Newer Posts</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/LC2191/" class="page-link float-right">Older Posts  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/uva993/" class="page-link float-right">Older Posts  &rarr;</a></li>
             
         </ul>
     </div>
@@ -250,6 +244,13 @@
         });
     </script>
 
+
+    <script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script>
+        MathJax.Hub.Config({
+            tex2jax:{inlineMath:[['$', '$']]}
+        })
+    </script>
 
     
 
