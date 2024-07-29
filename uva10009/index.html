@@ -9,9 +9,8 @@
 
 
 
-    <meta name="description" content="題目有n個人在做傳接枕頭，總共傳接time次，最後枕頭在誰手上?
-題解1因為是easy題，並且n跟time最多都只有1000次，直接爆開。now紀錄現在是正著傳還是反著傳，傳到1或是n的時候要反回來傳。
-1234567891011121314151617class Solution &amp;#123;pu"/>
+    <meta name="description" content="題目輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?
+題解因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。如果s1與s2有共同的點，"/>
 
 
 <!--Author-->
@@ -19,14 +18,13 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="LeetCode 2582. Pass the Pillow 題解"/>
+    <meta property="og:title" content="uva10009 All Roads Lead Where? 題解"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="題目有n個人在做傳接枕頭，總共傳接time次，最後枕頭在誰手上?
-題解1因為是easy題，並且n跟time最多都只有1000次，直接爆開。now紀錄現在是正著傳還是反著傳，傳到1或是n的時候要反回來傳。
-1234567891011121314151617class Solution &amp;#123;pu"/>
+    <meta property="og:description" content="題目輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?
+題解因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。如果s1與s2有共同的點，"/>
 
 
 <!--Open Graph Site Name-->
@@ -53,7 +51,7 @@
 
 <!-- Title -->
 
-<title>LeetCode 2582. Pass the Pillow 題解 | 刷題blog</title>
+<title>uva10009 All Roads Lead Where? 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -122,7 +120,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>LeetCode 2582. Pass the Pillow 題解</h1>
+                    <h1>uva10009 All Roads Lead Where? 題解</h1>
                     
                 </div>
             </div>
@@ -144,7 +142,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-07-28
+        2024-07-29
     
     <!-- word count and read count -->
     
@@ -158,12 +156,12 @@
     
 </span>  
                 
-                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>有n個人在做傳接枕頭，總共傳接time次，最後枕頭在誰手上?</p>
-<h2 id="題解1"><a href="#題解1" class="headerlink" title="題解1"></a>題解1</h2><p>因為是easy題，並且n跟time最多都只有1000次，直接爆開。<br>now紀錄現在是正著傳還是反著傳，傳到1或是n的時候要反回來傳。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">passThePillow</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">        <span class="type">bool</span> now=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(time--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(now)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">                <span class="keyword">if</span>(ans==n) now=<span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ans--;</span><br><span class="line">                <span class="keyword">if</span>(ans==<span class="number">1</span>) now=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="題解2"><a href="#題解2" class="headerlink" title="題解2"></a>題解2</h2><p>可以觀察到正著最多會傳n-1次，反著也是。只要知道現在是正著還是反著傳，就能直接計算是誰拿到枕頭。<br>time&#x2F;(n-1)代表已經傳過幾輪了，ex. 第零輪是1傳到n、第一輪是n傳到1…，可知偶數是正著傳，奇數反著傳。<br>tmp&#x3D;ime%(n-1)代表有幾次沒辦法完整傳一輪。如果是正著沒傳完，是從1開始剩下tmp次。如果是反著傳，代表從n開始減少tmp次。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">passThePillow</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> time)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> tmp = time%(n<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>((time/(n<span class="number">-1</span>))%<span class="number">2</span>==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>+tmp;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> n-tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。<br>使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。<br>如果s1與s2有共同的點，也就是擁有共同的ancestor，把ancestor刪除，只保留最後一個共同ancestor。</p>
+<blockquote>
+<p>ans一開始先暫存最後一個共同的ancestor。<br>記得s2要做reverse。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> testcase, road, num;</span><br><span class="line">	string city1, city2;</span><br><span class="line">	cin &gt;&gt; testcase;</span><br><span class="line">	<span class="keyword">while</span> (testcase--) &#123;</span><br><span class="line">		map&lt;string, string&gt; parents;</span><br><span class="line">		cin &gt;&gt; road &gt;&gt; num;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; road; i++) &#123;</span><br><span class="line">			cin &gt;&gt; city1 &gt;&gt; city2;</span><br><span class="line">			parents[city2] = city1;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">			cin &gt;&gt; city1 &gt;&gt; city2;</span><br><span class="line">			string s1, s2;</span><br><span class="line">			s1 += city1[<span class="number">0</span>];</span><br><span class="line">			s2 += city2[<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">while</span> (city1 != <span class="string">&quot;Rome&quot;</span>) &#123;</span><br><span class="line">				city1 = parents[city1];</span><br><span class="line">				s1 += city1[<span class="number">0</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (city2 != <span class="string">&quot;Rome&quot;</span>) &#123;</span><br><span class="line">				city2 = parents[city2];</span><br><span class="line">				s2 += city2[<span class="number">0</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			string ans;</span><br><span class="line">			<span class="keyword">while</span> (s<span class="number">1.</span><span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; s<span class="number">2.</span><span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; s<span class="number">1.</span><span class="built_in">back</span>() == s<span class="number">2.</span><span class="built_in">back</span>()) &#123;</span><br><span class="line">				ans = s<span class="number">1.</span><span class="built_in">back</span>();</span><br><span class="line">				s<span class="number">1.</span><span class="built_in">pop_back</span>();</span><br><span class="line">				s<span class="number">2.</span><span class="built_in">pop_back</span>();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">reverse</span>(s<span class="number">2.</span><span class="built_in">begin</span>(), s<span class="number">2.</span><span class="built_in">end</span>());</span><br><span class="line">			ans = s1 + ans + s2;</span><br><span class="line">			cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (testcase &gt; <span class="number">0</span>)cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
             </div>
 
             <!-- Post information -->
@@ -175,7 +173,7 @@
             
             
         
-            <a href="/tags/LeetCode/">#LeetCode</a>
+            <a href="/tags/uva/">#uva</a>
         
     </div>
 
@@ -183,10 +181,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/uva10009/" class="page-link float-left">&larr;  Newer Posts</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/LC2976/" class="page-link float-right">Older Posts  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/LC2582/" class="page-link float-right">Older Posts  &rarr;</a></li>
             
         </ul>
     </div>
