@@ -9,8 +9,10 @@
 
 
 
-    <meta name="description" content="題目輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?
-題解因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。如果s1與s2有共同的點，"/>
+    <meta name="description" content="題目輸入一張無向的連通圖，能不能使用兩個顏色填滿所有點，使相連兩個點不同顏色?
+題解先假設有解。則把隨便一個起點設為一個顏色，所有起點的鄰居設為另一個顏色…一直下去。如果遇到相鄰兩個點是相同顏色，代表沒有解(因為設為另一個顏色也會與其他鄰居同顏色)。使用dfs或bfs設定顏色，檢查是否合法。
+
+co"/>
 
 
 <!--Author-->
@@ -18,13 +20,15 @@
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="uva10009 All Roads Lead Where? 題解"/>
+    <meta property="og:title" content="uva10004 Bicoloring 題解"/>
 
 
 <!--Open Graph Description-->
 
-    <meta property="og:description" content="題目輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?
-題解因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。如果s1與s2有共同的點，"/>
+    <meta property="og:description" content="題目輸入一張無向的連通圖，能不能使用兩個顏色填滿所有點，使相連兩個點不同顏色?
+題解先假設有解。則把隨便一個起點設為一個顏色，所有起點的鄰居設為另一個顏色…一直下去。如果遇到相鄰兩個點是相同顏色，代表沒有解(因為設為另一個顏色也會與其他鄰居同顏色)。使用dfs或bfs設定顏色，檢查是否合法。
+
+co"/>
 
 
 <!--Open Graph Site Name-->
@@ -51,7 +55,7 @@
 
 <!-- Title -->
 
-<title>uva10009 All Roads Lead Where? 題解 | 刷題blog</title>
+<title>uva10004 Bicoloring 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -120,7 +124,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
                 <div class="post-heading text-white">
-                    <h1>uva10009 All Roads Lead Where? 題解</h1>
+                    <h1>uva10004 Bicoloring 題解</h1>
                     
                 </div>
             </div>
@@ -142,7 +146,7 @@
     
         <span class="post-meta-split">&nbsp;|&nbsp;</span>
         <i class="far fa-calendar-check fa-fw"></i>
-        2024-07-29
+        2024-07-30
     
     <!-- word count and read count -->
     
@@ -156,12 +160,12 @@
     
 </span>  
                 
-                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個樹狀圖，root必定是Rome，輸出點a到點b的最短路徑經過哪些點?</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>因為是樹狀圖，每個點往parents前進最終都會到達Rome，也就是兩個點至少會有一個共同的ancestor。<br>使用map紀錄parents，將兩個點往Rome找路徑，分別存在s1與s2中。<br>如果s1與s2有共同的點，也就是擁有共同的ancestor，把ancestor刪除，只保留最後一個共同ancestor。</p>
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一張無向的連通圖，能不能使用兩個顏色填滿所有點，使相連兩個點不同顏色?</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>先假設有解。則把隨便一個起點設為一個顏色，所有起點的鄰居設為另一個顏色…一直下去。<br>如果遇到相鄰兩個點是相同顏色，代表沒有解(因為設為另一個顏色也會與其他鄰居同顏色)。<br>使用dfs或bfs設定顏色，檢查是否合法。</p>
 <blockquote>
-<p>ans一開始先暫存最後一個共同的ancestor。<br>記得s2要做reverse。</p>
+<p>color儲存每個點是什麼顏色，使用0跟1代表兩個顏色，-1代表沒有上過色。<br>ans儲存有沒有相鄰兩個點同顏色，如果有，終止所有dfs。</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> testcase, road, num;</span><br><span class="line">	string city1, city2;</span><br><span class="line">	cin &gt;&gt; testcase;</span><br><span class="line">	<span class="keyword">while</span> (testcase--) &#123;</span><br><span class="line">		map&lt;string, string&gt; parents;</span><br><span class="line">		cin &gt;&gt; road &gt;&gt; num;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; road; i++) &#123;</span><br><span class="line">			cin &gt;&gt; city1 &gt;&gt; city2;</span><br><span class="line">			parents[city2] = city1;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">			cin &gt;&gt; city1 &gt;&gt; city2;</span><br><span class="line">			string s1, s2;</span><br><span class="line">			s1 += city1[<span class="number">0</span>];</span><br><span class="line">			s2 += city2[<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">while</span> (city1 != <span class="string">&quot;Rome&quot;</span>) &#123;</span><br><span class="line">				city1 = parents[city1];</span><br><span class="line">				s1 += city1[<span class="number">0</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (city2 != <span class="string">&quot;Rome&quot;</span>) &#123;</span><br><span class="line">				city2 = parents[city2];</span><br><span class="line">				s2 += city2[<span class="number">0</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			string ans;</span><br><span class="line">			<span class="keyword">while</span> (s<span class="number">1.</span><span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; s<span class="number">2.</span><span class="built_in">size</span>() &gt; <span class="number">0</span> &amp;&amp; s<span class="number">1.</span><span class="built_in">back</span>() == s<span class="number">2.</span><span class="built_in">back</span>()) &#123;</span><br><span class="line">				ans = s<span class="number">1.</span><span class="built_in">back</span>();</span><br><span class="line">				s<span class="number">1.</span><span class="built_in">pop_back</span>();</span><br><span class="line">				s<span class="number">2.</span><span class="built_in">pop_back</span>();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">reverse</span>(s<span class="number">2.</span><span class="built_in">begin</span>(), s<span class="number">2.</span><span class="built_in">end</span>());</span><br><span class="line">			ans = s1 + ans + s2;</span><br><span class="line">			cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (testcase &gt; <span class="number">0</span>)cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> ans;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; v;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; color;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ans == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> col = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (color[node] == <span class="number">1</span>) col = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; v[node].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (v[node][i] == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (color[i] == <span class="number">-1</span>) &#123;</span><br><span class="line">                color[i] = col;</span><br><span class="line">                <span class="built_in">dfs</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (color[i] != col) &#123;</span><br><span class="line">                ans = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> nodenum, edge;</span><br><span class="line">    <span class="type">int</span> node1, node2;</span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; nodenum &amp;&amp; nodenum) &#123;</span><br><span class="line">        cin &gt;&gt; edge;</span><br><span class="line">        ans = <span class="number">1</span>;</span><br><span class="line">        v.<span class="built_in">assign</span>(nodenum, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(nodenum, <span class="number">0</span>));</span><br><span class="line">        color.<span class="built_in">assign</span>(nodenum, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; edge; i++) &#123;</span><br><span class="line">            cin &gt;&gt; node1 &gt;&gt; node2;</span><br><span class="line">            v[node1][node2] = <span class="number">1</span>;</span><br><span class="line">            v[node2][node1] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        color[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (ans == <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot;BICOLORABLE.&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;NOT BICOLORABLE.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
             </div>
 
             <!-- Post information -->
@@ -181,10 +185,8 @@
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <ul class="pagination d-block text-center">
             
-                <li class="previous page-item d-inline"><a href="/uva10004/" class="page-link float-left">&larr;  Newer Posts</a></li>
             
-            
-                <li class="next page-item d-inline"><a href="/LC2582/" class="page-link float-right">Older Posts  &rarr;</a></li>
+                <li class="next page-item d-inline"><a href="/uva10009/" class="page-link float-right">Older Posts  &rarr;</a></li>
             
         </ul>
     </div>
