@@ -9,16 +9,22 @@
 
 
 
+    <meta name="description" content="題目輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。陣列是頭尾相接的。
+題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0n之間都是1，或是1n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多少個"/>
+
 
 <!--Author-->
 
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="刷題blog"/>
+    <meta property="og:title" content="LeetCode 2134. Minimum Swaps to Group All 1&#39;s Together II 題解"/>
 
 
 <!--Open Graph Description-->
+
+    <meta property="og:description" content="題目輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。陣列是頭尾相接的。
+題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0n之間都是1，或是1n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多少個"/>
 
 
 <!--Open Graph Site Name-->
@@ -26,7 +32,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="article"/>
 
 
 <!--Page Cover-->
@@ -45,7 +51,7 @@
 
 <!-- Title -->
 
-<title>Archives | 刷題blog</title>
+<title>LeetCode 2134. Minimum Swaps to Group All 1&#39;s Together II 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -106,82 +112,139 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>Archives</h1>
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>LeetCode 2134. Minimum Swaps to Group All 1's Together II 題解</h1>
+                    
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container page-archives">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
-            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-08-02
+    
+    <!-- word count and read count -->
     
 
     
-        
-            <button type="button" class="btn btn-light" onclick="javascript:window,location.href = '/archives/2024'">
-                2024
-            </button>
-        
-    
-</div>
 
-    <button class="btn btn-info archives-filter-all" type="button" disabled>
-        All
-        <span class="badge badge-light">12</span>
-    </button>
- 
-        </div>
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-eye fa-fw"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    
+</span>  
+                
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。<br>陣列是頭尾相接的。</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>用sliding windows的概念解題。<br>設總共有n個1，那麼最後排在一起的長相會是index&#x3D;0<del>n之間都是1，或是1</del>n+1之間，或是2~n+2…的其中一個。<br>只要求這幾個區間內有多少個0，就知道需要swap幾次，並找到區間內最少0的。</p>
+<p>第一個迴圈求出有幾個1，第二個迴圈求出0~n之間需要swap幾次。<br>第三個迴圈計算滑動windows到下一個區間的時候中間會有多少個0。</p>
+<blockquote>
+<p>1的數量只當作是windows的長度使用，ans在第二個迴圈的時候就是計算0的數量了，tmp也是。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSwaps</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> onenums=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();i++)</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">1</span>) onenums++;</span><br><span class="line">        <span class="type">int</span> ans=onenums;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;onenums;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">1</span>)ans--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> tmp=ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="type">int</span> j=i+onenums;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]==<span class="number">1</span>)tmp++;</span><br><span class="line">            <span class="keyword">if</span>(nums[j%nums.<span class="built_in">size</span>()]==<span class="number">1</span>)tmp--;</span><br><span class="line">            ans=<span class="built_in">min</span>(tmp,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
             
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/uva10220/">
-        <h1 class="post-title">
-            uva10220 I Love Big Numbers! 題解
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 post-tags">
         
-        2024-07-21
-    </p>
-</div>
+            <i class="fas fa-tag" style="vertical-align: middle;font-size: .8rem;"></i>
+            tags:&nbsp;
             
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/uva10106/">
-        <h1 class="post-title">
-            uva10106 Product 題解
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
+            
         
-        2024-07-20
-    </p>
-</div>
+            <a href="/tags/LeetCode/">#LeetCode</a>
+        
+    </div>
+
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pagination d-block text-center">
-    
-        <li class="previous page-item d-inline"><a href="/archives/" class="page-link float-left">&larr;  Newer Posts</a></li>
-    
-    
-</ul>
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/uva10004/" class="page-link float-right">Older Posts  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
         </div>
     </div>
-</div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
 
 
     <!-- Footer -->
