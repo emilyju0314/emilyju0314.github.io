@@ -10,7 +10,7 @@
 
 
     <meta name="description" content="題目輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。陣列是頭尾相接的。
-題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0n之間都是1，或是1n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多少個"/>
+題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0~n之間都是1，或是1~n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多"/>
 
 
 <!--Author-->
@@ -24,7 +24,7 @@
 <!--Open Graph Description-->
 
     <meta property="og:description" content="題目輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。陣列是頭尾相接的。
-題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0n之間都是1，或是1n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多少個"/>
+題解用sliding windows的概念解題。設總共有n個1，那麼最後排在一起的長相會是index&amp;#x3D;0~n之間都是1，或是1~n+1之間，或是2~n+2…的其中一個。只要求這幾個區間內有多"/>
 
 
 <!--Open Graph Site Name-->
@@ -157,7 +157,7 @@
 </span>  
                 
                 <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個陣列，裡面只有0跟1，問最少需要多少次swap才能使所有1排在一起。<br>陣列是頭尾相接的。</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>用sliding windows的概念解題。<br>設總共有n個1，那麼最後排在一起的長相會是index&#x3D;0<del>n之間都是1，或是1</del>n+1之間，或是2~n+2…的其中一個。<br>只要求這幾個區間內有多少個0，就知道需要swap幾次，並找到區間內最少0的。</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>用sliding windows的概念解題。<br>設總共有n個1，那麼最後排在一起的長相會是index&#x3D;0~n之間都是1，或是1~n+1之間，或是2~n+2…的其中一個。<br>只要求這幾個區間內有多少個0，就知道需要swap幾次，並找到區間內最少0的。</p>
 <p>第一個迴圈求出有幾個1，第二個迴圈求出0~n之間需要swap幾次。<br>第三個迴圈計算滑動windows到下一個區間的時候中間會有多少個0。</p>
 <blockquote>
 <p>1的數量只當作是windows的長度使用，ans在第二個迴圈的時候就是計算0的數量了，tmp也是。</p>
