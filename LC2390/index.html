@@ -9,16 +9,30 @@
 
 
 
+    <meta name="description" content="題目輸入一個字串，去掉字串裡星號以及星號左邊的一個字元並輸出。
+題解使用stack，如果原始字串內是星號，則把stack最上方的字元去掉。
+
+從stack中取出變為string後要反向。不能寫成 ans &amp;#x3D; top() + ans ，會超時。
+
+1234567891011121314151"/>
+
 
 <!--Author-->
 
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="刷題blog"/>
+    <meta property="og:title" content="LeetCode 2390. Removing Stars From a String 題解"/>
 
 
 <!--Open Graph Description-->
+
+    <meta property="og:description" content="題目輸入一個字串，去掉字串裡星號以及星號左邊的一個字元並輸出。
+題解使用stack，如果原始字串內是星號，則把stack最上方的字元去掉。
+
+從stack中取出變為string後要反向。不能寫成 ans &amp;#x3D; top() + ans ，會超時。
+
+1234567891011121314151"/>
 
 
 <!--Open Graph Site Name-->
@@ -26,7 +40,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="article"/>
 
 
 <!--Page Cover-->
@@ -45,7 +59,7 @@
 
 <!-- Title -->
 
-<title>刷題blog</title>
+<title>LeetCode 2390. Removing Stars From a String 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -107,213 +121,137 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-md-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>刷題blog</h1>
-                    <hr class="small">
-                    <span class="subheading d-block"></span>
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>LeetCode 2390. Removing Stars From a String 題解</h1>
+                    
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container page-index">
-    <div class="row">
-        <div class="col-lg-8 offset-md-2 col-md-10 offset-md-1">
-            
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        </div>
-        <div class="col-lg-8 offset-md-2 col-md-10 offset-md-1 post-all">    
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/LC2976/">
-        <h2 class="post-title">
-            LeetCode 2976. Minimum Cost to Convert String I 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-27
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/uva11001/">
-        <h2 class="post-title">
-            uva11001 Necklace 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-27
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/uva993/">
-        <h2 class="post-title">
-            uva993 Product of digits 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-25
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/LC2191/">
-        <h2 class="post-title">
-            LeetCode 2191. Sort the Jumbled Numbers 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-24
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/uva256/">
-        <h2 class="post-title">
-            uva256 Quirksome Squares 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-23
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/LC2418/">
-        <h2 class="post-title">
-            LeetCode 2418. Sort the People 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-22
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/uva10220/">
-        <h2 class="post-title">
-            uva10220 I Love Big Numbers! 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-21
-    </p>
-</div>
-<hr>
-                
-            
-                
-                    <div class="post-preview post-preview-index">
-    <a href="/uva10106/">
-        <h2 class="post-title">
-            uva10106 Product 題解
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2024-07-20
-    </p>
-</div>
-<hr>
-                
-            
-        </div>
-        <div class="col-lg-8 offset-md-2 col-md-10 offset-md-1 post-all">    
-            <ul class="pagination d-block text-center">
-    
-        <li class="previous page-item d-inline"><a href="/" class="page-link float-left">&larr;  Newer Posts</a></li>
+                    <span class="meta d-inline-block">
     
     
-</ul>
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-08-06
+    
+    <!-- word count and read count -->
+    
+
+    
+
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-eye fa-fw"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    
+</span>  
+                
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個字串，去掉字串裡星號以及星號左邊的一個字元並輸出。</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>使用stack，如果原始字串內是星號，則把stack最上方的字元去掉。</p>
+<blockquote>
+<p>從stack中取出變為string後要反向。<br>不能寫成 ans &#x3D; top() + ans ，會超時。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">removeStars</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="type">char</span>&gt; sta;</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">length</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]!=<span class="string">&#x27;*&#x27;</span>) sta.<span class="built_in">push</span>(s[i]);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!sta.<span class="built_in">empty</span>()) sta.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!sta.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            ans+=sta.<span class="built_in">top</span>();</span><br><span class="line">            sta.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(ans.<span class="built_in">begin</span>(),ans.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 post-tags">
+        
+            <i class="fas fa-tag" style="vertical-align: middle;font-size: .8rem;"></i>
+            tags:&nbsp;
+            
+            
+        
+            <a href="/tags/LeetCode/">#LeetCode</a>
+        
+    </div>
+
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/LC1732/" class="page-link float-right">Older Posts  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
         </div>
     </div>
-</div>
+</article> 
 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
 
 
     <!-- Footer -->
