@@ -9,16 +9,30 @@
 
 
 
+    <meta name="description" content="題目輸入一個9*9的vector，詢問是否為合法的數獨?(同行、同列、同方格內不能有重複數字)
+題解紀錄每行、每列、每方格內都有哪些數字。如果發現重複的數字則回傳false。
+
+我用map。但也可以使用其他資料結構，像是vector或是set。只是單純紀錄而已。
+
+12345678910111213"/>
+
 
 <!--Author-->
 
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="刷題blog"/>
+    <meta property="og:title" content="LeetCode 36. Valid Sudoku 題解"/>
 
 
 <!--Open Graph Description-->
+
+    <meta property="og:description" content="題目輸入一個9*9的vector，詢問是否為合法的數獨?(同行、同列、同方格內不能有重複數字)
+題解紀錄每行、每列、每方格內都有哪些數字。如果發現重複的數字則回傳false。
+
+我用map。但也可以使用其他資料結構，像是vector或是set。只是單純紀錄而已。
+
+12345678910111213"/>
 
 
 <!--Open Graph Site Name-->
@@ -26,7 +40,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="article"/>
 
 
 <!--Page Cover-->
@@ -45,7 +59,7 @@
 
 <!-- Title -->
 
-<title>Archives: 2024/7 | 刷題blog</title>
+<title>LeetCode 36. Valid Sudoku 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -106,69 +120,140 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>2024/7</h1>
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>LeetCode 36. Valid Sudoku 題解</h1>
+                    
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container page-archives">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
-            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-08-09
+    
+    <!-- word count and read count -->
     
 
     
-        
-            <button type="button" class="btn btn-info" disabled>
-                2024
-            </button>
-        
-    
-</div>
 
-    <a class="btn btn-light archives-filter-all" href="/archives/" role="button">
-        All    
-        <span class="badge badge-secondary">22</span>
-    </a>
- 
-        </div>
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-eye fa-fw"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    
+</span>  
+                
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個9*9的vector，詢問是否為合法的數獨?<br>(同行、同列、同方格內不能有重複數字)</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>紀錄每行、每列、每方格內都有哪些數字。如果發現重複的數字則回傳false。</p>
+<blockquote>
+<p>我用map。但也可以使用其他資料結構，像是vector或是set。只是單純紀錄而已。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValidSudoku</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        map&lt;<span class="type">char</span>,<span class="type">int</span>&gt; row[<span class="number">9</span>],col[<span class="number">9</span>],box[<span class="number">9</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">&#x27;.&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> boxnum = i/<span class="number">3</span>+(j/<span class="number">3</span>)*<span class="number">3</span>;</span><br><span class="line">                <span class="keyword">if</span>(row[i][board[i][j]]||col[j][board[i][j]]||box[boxnum][board[i][j]])</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                row[i][board[i][j]]++;</span><br><span class="line">                col[j][board[i][j]]++;</span><br><span class="line">                box[boxnum][board[i][j]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
             
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/uva10106/">
-        <h1 class="post-title">
-            uva10106 Product 題解
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 post-tags">
         
-        2024-07-20
-    </p>
-</div>
+            <i class="fas fa-tag" style="vertical-align: middle;font-size: .8rem;"></i>
+            tags:&nbsp;
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pagination d-block text-center">
-    
-        <li class="previous page-item d-inline"><a href="/archives/2024/07/" class="page-link float-left">&larr;  Newer Posts</a></li>
-    
-    
-</ul>
+            
+        
+            <a href="/tags/LeetCode/">#LeetCode</a>
+        
+    </div>
+
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+                <li class="previous page-item d-inline"><a href="/LC209/" class="page-link float-left">&larr;  Newer Posts</a></li>
+            
+            
+                <li class="next page-item d-inline"><a href="/LC17/" class="page-link float-right">Older Posts  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
         </div>
     </div>
-</div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
 
 
     <!-- Footer -->

@@ -9,16 +9,22 @@
 
 
 
+    <meta name="description" content="題目輸入一個數字(目標值)及一個vector，求vector內哪些連續位置的值加起來大於等於目標值。回傳符合條件的最小長度。
+題解如果直接跑雙層迴圈求太耗時，用sliding wondow解題。假設v[0]+v[1]+v[2]&amp;lt;目標值，代表v[1]、v[1]+v[2]、v[2]&amp;lt;目標值，"/>
+
 
 <!--Author-->
 
 
 <!--Open Graph Title-->
 
-    <meta property="og:title" content="刷題blog"/>
+    <meta property="og:title" content="LeetCode 209. Minimum Size Subarray Sum 題解"/>
 
 
 <!--Open Graph Description-->
+
+    <meta property="og:description" content="題目輸入一個數字(目標值)及一個vector，求vector內哪些連續位置的值加起來大於等於目標值。回傳符合條件的最小長度。
+題解如果直接跑雙層迴圈求太耗時，用sliding wondow解題。假設v[0]+v[1]+v[2]&amp;lt;目標值，代表v[1]、v[1]+v[2]、v[2]&amp;lt;目標值，"/>
 
 
 <!--Open Graph Site Name-->
@@ -26,7 +32,7 @@
 
 <!--Type page-->
 
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="article"/>
 
 
 <!--Page Cover-->
@@ -45,7 +51,7 @@
 
 <!-- Title -->
 
-<title>Archives: 2024/7 | 刷題blog</title>
+<title>LeetCode 209. Minimum Size Subarray Sum 題解 | 刷題blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
@@ -106,69 +112,139 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                <div class="site-heading text-center text-white">
-                    <h1>2024/7</h1>
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="post-heading text-white">
+                    <h1>LeetCode 209. Minimum Size Subarray Sum 題解</h1>
+                    
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container page-archives">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 text-center mb-5">
-            <div class="btn-group archives-filter-group" role="group" aria-label="archives filter">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Main Content -->
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                
+                    <span class="meta d-inline-block">
+    
+    
+    <!-- Date -->
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-calendar-check fa-fw"></i>
+        2024-08-09
+    
+    <!-- word count and read count -->
     
 
     
-        
-            <button type="button" class="btn btn-info" disabled>
-                2024
-            </button>
-        
-    
-</div>
 
-    <a class="btn btn-light archives-filter-all" href="/archives/" role="button">
-        All    
-        <span class="badge badge-secondary">22</span>
-    </a>
- 
-        </div>
-        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+    
+        <span class="post-meta-split">&nbsp;|&nbsp;</span>
+        <i class="far fa-eye fa-fw"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    
+</span>  
+                
+                <h2 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h2><p>輸入一個數字(目標值)及一個vector，求vector內哪些連續位置的值加起來大於等於目標值。<br>回傳符合條件的最小長度。</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>如果直接跑雙層迴圈求太耗時，用sliding wondow解題。<br>假設v[0]+v[1]+v[2]&lt;目標值，代表v[1]、v[1]+v[2]、v[2]&lt;目標值，不用重複計算(sliding window的原理)。<br>使用left、right表示現在是從left index累加到right index。</p>
+<ol>
+<li>如果發現累加&lt;目標值，則right往右，多加上下一位的值</li>
+<li>如果發現已經超過目標值了，left往右移動，減少原本的第一位的值，看看能不能縮減長度。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">100010</span>,now=nums[<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>,right=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;nums.<span class="built_in">size</span>()&amp;&amp;right&lt;nums.<span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="keyword">if</span>(now&lt;target)&#123;</span><br><span class="line">                <span class="keyword">if</span>(right==nums.<span class="built_in">size</span>()<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">                right++;</span><br><span class="line">                now+=nums[right];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                ans=<span class="built_in">min</span>(ans,right-left<span class="number">+1</span>);</span><br><span class="line">                now-=nums[left];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ans==<span class="number">100010</span>) ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            </div>
+
+            <!-- Post information -->
             
-                <div class="post-preview post-preview-archive-archive">
-    <a href="/uva10106/">
-        <h1 class="post-title">
-            uva10106 Product 題解
-        </h1>
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 post-tags">
         
-        2024-07-20
-    </p>
-</div>
+            <i class="fas fa-tag" style="vertical-align: middle;font-size: .8rem;"></i>
+            tags:&nbsp;
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pagination d-block text-center">
-    
-        <li class="previous page-item d-inline"><a href="/archives/2024/07/" class="page-link float-left">&larr;  Newer Posts</a></li>
-    
-    
-</ul>
+            
+        
+            <a href="/tags/LeetCode/">#LeetCode</a>
+        
+    </div>
+
+            
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <ul class="pagination d-block text-center">
+            
+            
+                <li class="next page-item d-inline"><a href="/LC36/" class="page-link float-right">Older Posts  &rarr;</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+                <!-- Comments -->
+                
+
+                
+
+            
+
         </div>
     </div>
-</div>
+</article> 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <style>
+        #toc-content .toc-link::before {
+            background-color: transparent;
+            max-height: 25px;
+        }
+
+        #toc-content .toc-link.is-active-link::before {
+            background-color: #404040;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <div class="ui-toc dropup scrollspy-body pull-right" style="right: 3%;">
+        <button type="button" class="toc-btn btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            <i class="fas fa-list"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right p-2"  aria-labelledby="tocLabel">
+            <div class="toc-widget">
+                <div id="toc-content" class="text-truncate">
+                </div>
+            </div>
+            <div class="toc-menu pt-3 pl-4">
+                <a class="expand-toggle d-block py-1" href="#"><span class="expand-text">Expand all</span><span class="close-text" style="display: none;">Collapse all</span></a>
+                <a class="back-to-top d-block py-1" href="#">Back to top</a>
+                <a class="go-to-bottom d-block py-1" href="#">Go to bottom</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        tocbot.init({
+            // Where to render the table of contents.
+            tocSelector: '#toc-content',
+            // Where to grab the headings to build the table of contents.
+            contentSelector: 'article',
+            // Which headings to grab inside of the contentSelector element.
+            headingSelector: 'h1, h2, h3',
+            // For headings inside relative or absolute positioned containers within content.
+            hasInnerContainers: true,
+        });
+    </script>
+
+
+    
 
 
     <!-- Footer -->
